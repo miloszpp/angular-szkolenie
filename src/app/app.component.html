@@ -1,0 +1,33 @@
+<h1>Wybierz zespół</h1>
+<select [(ngModel)]="band">
+    <option *ngFor="let band of bands" [ngValue]="band">{{band.name}}</option>
+</select>
+
+<div *ngIf="band">
+    <h1 [style.textTransform]="textTransform" [style.color]="color">Zespół: {{band.name}}</h1>
+    <div>
+        <label><input type="checkbox" [(ngModel)]="showBio" />Pokaż biografię</label>
+        <p *ngIf="showBio">{{band.bio}}</p>
+    </div>
+    <div>
+        Gatunki muzyczne:
+        <ul>
+            <li *ngFor="let genre of band.genres">{{genre}}</li>
+        </ul>
+    </div>
+    <div>
+        Członkowie zespołu:
+        <ul>
+            <li *ngFor="let member of band.members">{{member}}</li>
+        </ul>
+    </div>
+    <div>
+        <a [href]="band.links.wikipediaUrl">Wikipedia</a><br />
+        <button (click)="changeTransform()">Wielkie/małe litery</button>
+        <button (click)="changeColor()">Zmień kolor</button><br />
+    </div>
+    <div>
+        <label><input type="checkbox" [(ngModel)]="showPhoto" />Pokaż zdjęcie</label><br />
+        <img *ngIf="showPhoto" [src]="band.links.photoUrl" width="300" />
+    </div>
+</div>
