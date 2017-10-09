@@ -58,7 +58,7 @@
     "component": {
       "spec": false,
       "inlineStyle": true,
-      "inlineTemplate": true
+      "inlineTemplate": false
     },
     "directive": {
       "spec": false

@@ -1,0 +1,8 @@
+<h1>Wybierz zespół</h1>
+<select [(ngModel)]="band">
+    <option *ngFor="let band of bands" [ngValue]="band">{{band.name}}</option>
+</select>
+
+<div *ngIf="band">
+    <app-band-details [band]="band" (shift)="shiftBand($event)"></app-band-details>
+</div>
