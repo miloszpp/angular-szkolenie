@@ -19,9 +19,15 @@
   </ul>
 </div>
 <div>
+  Linki: 
   <a [href]="band.links.wikipediaUrl">Wikipedia</a><br />
+</div>
+<div>
+  Ustawienia:
   <button (click)="changeTransform()">Wielkie/małe litery</button>
-  <button (click)="changeColor()">Zmień kolor</button><br />
+  <select [(ngModel)]="color">
+    <option *ngFor="let col of colors" [ngValue]="col">{{col}}</option>
+  </select>
 </div>
 <div>
   <app-band-details-photo [photoUrl]="band.links.photoUrl"></app-band-details-photo>
