@@ -9,18 +9,28 @@ import { BandDetailsPhotoComponent } from './band-details-photo/band-details-pho
 import { BandsService } from "./bands.service";
 import { ColorService } from "./color.service";
 import { HttpModule } from "@angular/http";
+import { RouterModule, Routes } from '@angular/router';
+import { BandAddComponent } from './band-add/band-add.component';
+
+const appRoutes: Routes = [
+  { path: 'band-list', component: BandListComponent },
+  { path: 'band-add', component: BandAddComponent },
+  { path: '', redirectTo: '/band-list', pathMatch: 'full' }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     BandDetailsComponent,
     BandListComponent,
-    BandDetailsPhotoComponent
+    BandDetailsPhotoComponent,
+    BandAddComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     BandsService,

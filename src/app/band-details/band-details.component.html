@@ -20,14 +20,18 @@
             </div>
         </div>
         <div class="col-sm-6">
-          <a [href]="band.links.wikipediaUrl">Wikipedia</a><br />
-          <label><input type="checkbox" [(ngModel)]="showBio" />Pokaż biografię</label>
-          <p *ngIf="showBio">{{band.bio}}</p>
+          <p>
+            <a [href]="band.links.wikipediaUrl">Wikipedia</a>
+          </p>
+          <div>
+            <label><input type="checkbox" [(ngModel)]="showBio" />Pokaż biografię</label>
+            <p *ngIf="showBio">{{band.bio}}</p>
+          </div>
           <app-band-details-photo [photoUrl]="band.links.photoUrl"></app-band-details-photo>
         </div>
       </div>
-      <a href="#" class="card-link" (click)="previous()">Poprzedni</a>
-      <a href="#" class="card-link" (click)="next()">Następny</a>
+      <a class="card-link" (click)="previous()">Poprzedni</a>
+      <a class="card-link" (click)="next()">Następny</a>
   </div>
 </div>
 

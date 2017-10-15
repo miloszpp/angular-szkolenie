@@ -1,3 +1,11 @@
 <div class="container">
-    <app-band-list></app-band-list>
+    <ul class="nav nav-pills mt-2">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/band-list" routerLinkActive="active">Lista zespołów</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/band-add" routerLinkActive="active">Dodaj zespół</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
 </div>
