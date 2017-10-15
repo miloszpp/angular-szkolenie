@@ -1,7 +1,11 @@
-<h1>Wybierz zespół</h1>
-<select [(ngModel)]="band">
-    <option *ngFor="let band of bands" [ngValue]="band">{{band.name}}</option>
-</select>
+<div class="card mb-2 mt-2">
+    <div class="card-body">
+        <h4 class="card-title">Wybierz zespół</h4>
+        <select [(ngModel)]="band" class="form-control">
+            <option *ngFor="let band of bands" [ngValue]="band">{{band.name}}</option>
+        </select>
+    </div>
+</div>
 
 <div *ngIf="band">
     <app-band-details [band]="band" (shift)="shiftBand($event)"></app-band-details>

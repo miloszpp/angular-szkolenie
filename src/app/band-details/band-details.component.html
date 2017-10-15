@@ -1,34 +1,48 @@
-<h1 [style.textTransform]="textTransform" [style.color]="color">
-  <button (click)="previous()">&lt;</button> Zespół: {{band.name}}
-  <button (click)="next()">&gt;</button>
-</h1>
-<div>
-  <label><input type="checkbox" [(ngModel)]="showBio" />Pokaż biografię</label>
-  <p *ngIf="showBio">{{band.bio}}</p>
+<div class="card">
+  <div class="card-header">
+    <span class="card-title" [style.textTransform]="textTransform" [style.color]="color">{{band.name}}</span>
+      
+  </div>
+  <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+            <div>
+              Gatunki muzyczne:
+              <ul>
+                <li *ngFor="let genre of band.genres">{{genre}}</li>
+              </ul>
+            </div>
+            <div>
+              Członkowie zespołu:
+              <ul>
+                <li *ngFor="let member of band.members">{{member}}</li>
+              </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+          <a [href]="band.links.wikipediaUrl">Wikipedia</a><br />
+          <label><input type="checkbox" [(ngModel)]="showBio" />Pokaż biografię</label>
+          <p *ngIf="showBio">{{band.bio}}</p>
+          <app-band-details-photo [photoUrl]="band.links.photoUrl"></app-band-details-photo>
+        </div>
+      </div>
+      <a href="#" class="card-link" (click)="previous()">Poprzedni</a>
+      <a href="#" class="card-link" (click)="next()">Następny</a>
+  </div>
 </div>
-<div>
-  Gatunki muzyczne:
-  <ul>
-    <li *ngFor="let genre of band.genres">{{genre}}</li>
-  </ul>
-</div>
-<div>
-  Członkowie zespołu:
-  <ul>
-    <li *ngFor="let member of band.members">{{member}}</li>
-  </ul>
-</div>
-<div>
-  Linki: 
-  <a [href]="band.links.wikipediaUrl">Wikipedia</a><br />
-</div>
-<div>
-  Ustawienia:
-  <button (click)="changeTransform()">Wielkie/małe litery</button>
-  <select [(ngModel)]="color">
-    <option *ngFor="let col of colors" [ngValue]="col">{{col}}</option>
-  </select>
-</div>
-<div>
-  <app-band-details-photo [photoUrl]="band.links.photoUrl"></app-band-details-photo>
+
+<div class="card mt-2">
+  <div class="card-body">
+      <h5 class="card-title">Ustawienia</h5>
+      <div class="form-row">
+        <div class="col-auto">
+          <button class="btn btn-primary" (click)="changeTransform()">Wielkie/małe litery</button>
+        </div>
+        <div class="col-auto">
+          <select class="form-control" [(ngModel)]="color">
+            <option *ngFor="let col of colors" [ngValue]="col">{{col}}</option>
+          </select>
+        </div>
+      </div>
+  </div>
 </div>
