@@ -1,3 +1,15 @@
-<p>
-TODO DAREK
-</p>
+<form (ngSubmit)="onSubmit()">
+    <fieldset>
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="model.name" name="name" />
+    </fieldset>
+    <fieldset>
+        <label>Bio:</label>
+        <textarea [(ngModel)]="model.bio" name="bio"></textarea>
+    </fieldset>
+    <fieldset>
+        <label>Wikipedia URL:</label>
+        <input type="text" [(ngModel)]="model.links.wikipediaUrl" name="wikipediaUrl" />
+    </fieldset>
+    <input type="submit" value="Create" />
+</form>

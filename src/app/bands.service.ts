@@ -18,4 +18,8 @@ export class BandsService {
       .catch(error => Promise.reject("Failed to fetch band list"));
   }
 
+  createBand(band: Band): Promise<any> {
+    return this.http.post(this.url, band).toPromise();
+  }
+
 }
