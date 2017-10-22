@@ -8,9 +8,9 @@ import { BandListComponent } from './band-list/band-list.component';
 import { BandDetailsPhotoComponent } from './band-details-photo/band-details-photo.component';
 import { BandsService } from "./bands.service";
 import { ColorService } from "./color.service";
-import { HttpModule } from "@angular/http";
 import { RouterModule, Routes } from '@angular/router';
 import { BandAddComponent } from './band-add/band-add.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'band-list', component: BandListComponent },
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
 import { Band } from "./model";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ColorService {
 
   url = "http://restbands.azurewebsites.net/api/Color"
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getColors(): Promise<string[]> {
-    return this.http.get(this.url)
+    return this.http.get<string[]>(this.url)
       .toPromise()
-      .then(response => response.json() as string[])
       .catch(error => Promise.reject("Failed to fetch band list"));
   }
 

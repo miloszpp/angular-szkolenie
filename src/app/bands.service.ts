@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from "@angular/common/http";
 import { Band } from "./model";
 
 import 'rxjs/add/operator/toPromise';
@@ -9,12 +9,11 @@ export class BandsService {
 
   url = "http://restbands.azurewebsites.net/api/Band"
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getBands(): Promise<Band[]> {
-    return this.http.get(this.url)
+    return this.http.get<Band[]>(this.url)
       .toPromise()
-      .then(response => response.json() as Band[])
       .catch(error => Promise.reject("Failed to fetch band list"));
   }
 
