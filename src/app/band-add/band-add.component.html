@@ -1,3 +1,56 @@
-<p>
-TODO DAREK
-</p>
+<div class="card mb-2 mt-2">
+    <div class="card-body">
+        <h4 class="card-title">Dodaj zespół</h4>
+        
+        <form #bandsForm="ngForm" (ngSubmit)="createBand(bandsForm.value)">
+            <div class="form-group">
+                <label for="name">Nazwa</label>
+                <input class="form-control" #name="ngModel" name="name" ngModel minlength="2" />
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name.errors.minlength">Pole musi zawierać co najmniej dwa znaki.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Biografia</label>
+                <textarea class="form-control" #bio="ngModel" name="bio" ngModel required></textarea>
+                <div *ngIf="bio.invalid && (bio.dirty || bio.touched)" class="alert alert-danger">
+                    <div *ngIf="bio.errors.required">Pole jest obowiązkowe.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="members">Członkowie</label>
+                <input class="form-control" #members="ngModel" name="members" ngModel />
+                <small class="form-text text-muted">Użyj średnika do odzielenia członków zespołu.</small>
+            </div>
+
+            <fieldset ngModelGroup="links">
+                <div class="form-group">
+                    <label for="wikipediaUrl">Adres w Wikipedii</label>
+                    <input class="form-control" #wikipediaUrl="ngModel" name="wikipediaUrl" ngModel />
+                </div>
+                <div class="form-group">
+                    <label for="photoUrl">Adres zdjęcia</label>
+                    <input class="form-control" #photoUrl="ngModel" name="photoUrl" ngModel />
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="genres">Gatunki</label>
+                <select multiple class="form-control" #genres="ngModel" name="genres" ngModel>
+                    <option>rock</option>
+                    <option>metal</option>
+                    <option>pop</option>
+                </select>
+                <small class="form-text text-muted">Przyrzymaj CTRL do zaznaczenia wielu opcji.</small>
+            </div>
+
+            <div>
+                <button [disabled]="!bandsForm.form.valid" class="btn btn-primary" type="submit">Utwórz zespół</button>
+            </div>
+            
+        </form>
+        
+    </div>
+</div>
