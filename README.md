@@ -10,3 +10,6 @@
 1. Odpalamy zintegrowany terminal (Ctrl + `).
 1. Wpisujemy "npm install".
 1. Wpisujemy "ng serve -o".
+
+W razie pytań zachęcam do kontaktu!
+milosz@miloszpiechocki.com
