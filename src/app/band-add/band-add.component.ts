@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BandLinks, Band } from '../model';
-import { BandsService } from '../bands.service';
+import { BandService } from '../band.service';
 
 @Component({
   selector: 'app-band-add',
@@ -9,7 +9,7 @@ import { BandsService } from '../bands.service';
 })
 export class BandAddComponent {
 
-  constructor(private bandDataService: BandsService) { }
+  constructor(private bandDataService: BandService) { }
 
   createBand(formModel: CreateBandFormModel) {
     // otrzymalismy model formularza, musimy na jego podstawie utworzyć prawdziwy obiekt Band
@@ -21,8 +21,11 @@ export class BandAddComponent {
       members: formModel.members.split(';') // ale czasami mogą zajść jakieś transformacje
     };
     this.bandDataService.createBand(band)
-      .then(() => alert('Zespoł utworzony!'))
-      .catch(error => alert('Wystąpił błąd podczas dodawania zespołu'));
+      .subscribe(
+        () => { alert('Zespoł utworzony!'); },
+        error => { alert('Wystąpił błąd podczas dodawania zespołu'); }
+      );
+      
   }
 
 }

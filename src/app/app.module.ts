@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BandDetailsComponent } from './band-details/band-details.component';
 import { BandListComponent } from './band-list/band-list.component';
 import { BandDetailsPhotoComponent } from './band-details-photo/band-details-photo.component';
-import { BandsService } from "./bands.service";
+import { BandService } from "./band.service";
 import { ColorService } from "./color.service";
 import { RouterModule, Routes } from '@angular/router';
 import { BandAddComponent } from './band-add/band-add.component';
@@ -33,7 +33,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    BandsService,
+    BandService,
     ColorService
   ],
   bootstrap: [AppComponent]

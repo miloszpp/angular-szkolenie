@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Band } from "./model";
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ColorService {
@@ -9,10 +10,8 @@ export class ColorService {
 
   constructor(private http: HttpClient) { }
 
-  getColors(): Promise<string[]> {
-    return this.http.get<string[]>(this.url)
-      .toPromise()
-      .catch(error => Promise.reject("Failed to fetch band list"));
+  getColors(): Observable<string[]> {
+    return this.http.get<string[]>(this.url);
   }
 
 }

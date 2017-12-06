@@ -12,21 +12,22 @@ export class BandDetailsComponent implements OnInit {
   @Input() band: Band;
   @Output() shift = new EventEmitter<string>();
 
-  textTransform = "uppercase"
-  color: string
-  colors: string[]
+  textTransform = "uppercase";
+  color: string;
+  colors: string[];
 
   constructor(private colorService: ColorService) {
   }
 
   ngOnInit(): void {
-    this.colorService
-      .getColors()
-      .then(colors => {
-        this.colors = colors;
-        this.color = colors[0];
-      })
-      .catch(error => alert(error));
+    this.colorService.getColors()
+      .subscribe(
+        colors => {
+          this.colors = colors;
+          this.color = colors[0];
+        },
+        error => alert(error)
+      );
   }
 
   previous() {

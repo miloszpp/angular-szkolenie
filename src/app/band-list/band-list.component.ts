@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Band } from "../model";
-import { BandsService } from "../bands.service";
+import { BandService } from "../band.service";
 
 @Component({
   selector: 'app-band-list',
@@ -9,18 +9,17 @@ import { BandsService } from "../bands.service";
 })
 export class BandListComponent implements OnInit {
 
-  band: Band;
+  band: Band = null;
   bands: Band[];
 
-  constructor(private bandsService: BandsService) {
+  constructor(private bandsService: BandService) {
   }
   
   ngOnInit(): void {
-    this.bandsService.getBands().then(bands => {
-      this.bands = bands;
-      this.band = bands[0];
-    })
-    .catch(error => alert(error));
+    this.bandsService.getBands().subscribe(
+      bands => { this.bands = bands; },
+      error => { alert("Błąd podczas pobierania listy zespołów"); }
+    );
   }
   
   shiftBand(direction) {
