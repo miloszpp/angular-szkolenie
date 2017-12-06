@@ -3,7 +3,7 @@
         <h4 class="card-title">Wybierz zespół</h4>
         <select [(ngModel)]="band" class="form-control">
             <option [ngValue]="null">Brak</option>
-            <option *ngFor="let band of bands" [ngValue]="band">{{band.name}}</option>
+            <option *ngFor="let band of bands; trackBy: trackBand" [ngValue]="band">{{band.name}}</option>
         </select>
     </div>
 </div>

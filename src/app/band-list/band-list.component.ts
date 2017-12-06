@@ -32,4 +32,8 @@ export class BandListComponent implements OnInit {
     }
   }
 
+  trackBand(idx: number, band: Band) {
+    return band.name;
+  }
+
 }

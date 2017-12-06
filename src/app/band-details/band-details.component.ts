@@ -1,11 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { Band } from "../model";
 import { ColorService } from "../color.service";
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-band-details',
   templateUrl: './band-details.component.html',
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BandDetailsComponent implements OnInit {
 
@@ -16,8 +19,10 @@ export class BandDetailsComponent implements OnInit {
   color: string;
   colors: string[];
 
-  constructor(private colorService: ColorService) {
-  }
+  constructor(
+    private colorService: ColorService, 
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.colorService.getColors()
@@ -25,6 +30,7 @@ export class BandDetailsComponent implements OnInit {
         colors => {
           this.colors = colors;
           this.color = colors[0];
+          this.changeDetector.markForCheck();
         },
         error => alert(error)
       );
@@ -41,6 +47,14 @@ export class BandDetailsComponent implements OnInit {
   changeTransform() {
     if (this.textTransform === "uppercase") this.textTransform = "lowercase";
     else this.textTransform = "uppercase";
+  }
+
+  disableDetector() {
+    this.changeDetector.detach();
+  }
+
+  enableDetector() {
+    this.changeDetector.reattach();
   }
 
 }
